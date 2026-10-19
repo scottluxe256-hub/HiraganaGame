@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.font-japanese {
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
