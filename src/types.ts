@@ -1,9 +1,9 @@
-export type HiraganaCategory = 'basic' | 'dakuten' | 'handakuten' | 'youon';
+export type HiraganaCategory = 'basic' | 'dakuten' | 'handakuten' | 'youon' | 'katakana';
 
 export interface HiraganaItem {
-  id: number;
-  char: string;
-  romaji: string;
+  id: string;          // Diubah dari number ke string
+  character: string;   // Diubah dari char ke character
+  romaji: string[];    // Diubah dari string ke string[]
   type: string;
 }
 

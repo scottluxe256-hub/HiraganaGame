@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, FormEvent } from 'react';
+import { useState, useEffect, useRef, type FormEvent } from 'react';
 import type { HiraganaItem, AnswerRecord } from '../types';
 import { hiraganaList, katakanaList } from '../data/hiraganaData';
 

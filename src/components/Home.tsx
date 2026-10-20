@@ -1,5 +1,3 @@
-import type { GameState } from '../types'; // <-- Tambahkan kata 'type'
-
 interface HomeProps {
   onStart: () => void;
 }
