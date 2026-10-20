@@ -16,21 +16,20 @@ const pickUniqueCard = (
     // Level 100+: Katakana Lengkap
     pool = katakanaList;
   } else if (questionNumber <= 10) {
-    // 1-10: Huruf Dasar
+    // Level 1-10: Huruf Dasar
     pool = hiraganaList.filter((item) => item.type === 'basic');
   } else if (questionNumber <= 20) {
-    // 11-20: Tenten & Maru (Dakuten & Handakuten)
+    // Level 11-20: Kutip & Bulat (Dakuten & Handakuten)
     pool = hiraganaList.filter(
       (item) => item.type === 'dakuten' || item.type === 'handakuten'
     );
-  } else if (questionNumber <= 40) {
-    // 21-40: Sambungan (Yōon & Expert)
-    pool = hiraganaList.filter(
-      (item) => item.type === 'yoon' || item.type === 'expert'
-    );
+  } else if (questionNumber <= 30) {
+    // Level 21-30: Gabungan (Yōon: Kya, Kyo, dll)
+    pool = hiraganaList.filter((item) => item.type === 'yoon');
   } else {
-    // 41-99: Acak Campuran Hiragana
-    pool = hiraganaList;
+    // Level 31-99: Kata Panjang, Partikel & Campuran Hiragana
+    const expertPool = hiraganaList.filter((item) => item.type === 'expert');
+    pool = expertPool.length > 0 ? expertPool : hiraganaList;
   }
 
   if (pool.length === 0) pool = hiraganaList;
@@ -176,11 +175,13 @@ export const Ingame = ({ onEndGame }: IngameProps) => {
             Soal #{questionNumber}{' '}
             {questionNumber >= 100
               ? '🌟 KATAKANA'
-              : questionNumber >= 41
-              ? '⚡ ACAK'
+              : questionNumber >= 31
+              ? '📚 KATA & PARTIKEL'
               : questionNumber >= 21
-              ? '🔥 SAMBUNGAN'
-              : ''}{' '}
+              ? '🔥 YŌON (KYA/KYO)'
+              : questionNumber >= 11
+              ? '✨ DAKUTEN & HANDAKUTEN'
+              : '🌱 BASIC'}{' '}
             {isReverseMode && '(Pilih Huruf)'}
           </span>
           <button
